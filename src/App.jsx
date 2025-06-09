@@ -1,7 +1,9 @@
+import Header from "./components/Header";
+
 export default function App() {
   return (
-    <h1 className="text-5xl font-bold text-center mt-30">
-      Welcome to DineDash!!!
-    </h1>
+    <div className="container mx-auto px-4 h-screen flex flex-col">
+      <Header />
+    </div>
   );
 }
