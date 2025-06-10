@@ -39,6 +39,11 @@ export default function Order() {
   };
 
   const handlePlaceOrder = () => {
+    if (totalPrice <= 0) {
+      return alert("Your order is empty. Please add some items to proceed.");
+    } else if (customerName.length <= 0) {
+      return alert("Please enter the customer's name to finalize the order.");
+    }
     const newOrderReport = {
       id: crypto.randomUUID(),
       customerName: customerName,
@@ -46,13 +51,25 @@ export default function Order() {
       amount: totalPrice,
       status: "PENDING",
     };
-    setOrderReports([...orderReports, newOrderReport]);
+    const updatedReports = [newOrderReport, ...orderReports];
+    setOrderReports(updatedReports);
     setSelectedItems([]);
     setCustomerName("");
     setTotalPrice(0);
+    handleOrderSummary(updatedReports);
   };
 
-  console.log(orderReports);
+  const handleOrderSummary = (reports) => {
+    setTotalOrders(reports.length);
+    const totalPendingOrders = reports.filter(
+      (report) => report.status === "PENDING"
+    ).length;
+    setPendingOrders(totalPendingOrders);
+    const totalDeliveredOrders = reports.filter(
+      (report) => report.status === "DELIVERED"
+    ).length;
+    setDeliveredOrders(totalDeliveredOrders);
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 flex-grow">

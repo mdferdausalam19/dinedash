@@ -1,16 +1,7 @@
+import NoOrdersFound from "./NoOrdersFound";
 import OrderReportsList from "./OrderReportsList";
 
-export default function OrderReports() {
-  const orderReports = [
-    {
-      id: crypto.randomUUID(),
-      customerName: "Ferdaus Alam",
-      items: 5,
-      amount: 34342,
-      status: "PENDING",
-    },
-  ];
-
+export default function OrderReports({ orderReports }) {
   return (
     <div>
       <div className="flex justify-between">
@@ -50,6 +41,7 @@ export default function OrderReports() {
                 <th className="pb-3 font-medium">Action</th>
               </tr>
             </thead>
+
             <tbody className="text-sm">
               {orderReports.map((orderReport) => (
                 <OrderReportsList
@@ -65,6 +57,7 @@ export default function OrderReports() {
           </table>
         </div>
       </div>
+      {orderReports.length <= 0 && <NoOrdersFound />}
     </div>
   );
 }

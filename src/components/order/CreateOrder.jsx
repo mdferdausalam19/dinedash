@@ -53,6 +53,7 @@ export default function CreateOrder({
           onChange={(e) => onCustomerName(e.target.value)}
           type="text"
           name="customerName"
+          required
           className="w-full bg-gray-700 bg-opacity-50 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300"
         />
       </div>
@@ -75,8 +76,9 @@ export default function CreateOrder({
       </div>
 
       <button
+        disabled={totalPrice <= 0}
         onClick={onPlaceOrder}
-        className="w-full bg-primary hover:bg-opacity-90 text-white font-medium py-3 rounded-full transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 cursor-pointer"
+        className="w-full bg-primary hover:bg-opacity-90 text-white font-medium py-3 rounded-full transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 cursor-pointer disabled:cursor-not-allowed"
       >
         Place Order (BDT {totalPrice})
       </button>
