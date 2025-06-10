@@ -9,20 +9,6 @@ export default function OrderReports() {
       amount: 34342,
       status: "PENDING",
     },
-    {
-      id: crypto.randomUUID(),
-      customerName: "Ferdaus Alam",
-      items: 5,
-      amount: 34342,
-      status: "PENDING",
-    },
-    {
-      id: crypto.randomUUID(),
-      customerName: "Ferdaus Alam",
-      items: 5,
-      amount: 34342,
-      status: "PENDING",
-    },
   ];
 
   return (

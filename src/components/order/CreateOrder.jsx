@@ -2,10 +2,16 @@ import chickenImg from "../../assets/chicken.svg";
 import hamburgerImg from "../../assets/hamburger.svg";
 import pizzaImg from "../../assets/pizza.svg";
 import submarineImg from "../../assets/submarine.svg";
-
 import MenuItemsList from "./MenuItemsList";
 
-export default function CreateOrder() {
+export default function CreateOrder({
+  onSelectItem,
+  onCustomerName,
+  customerName,
+  onPlaceOrder,
+  totalPrice,
+  selectedItems,
+}) {
   const menuItems = [
     {
       id: "hamburger",
@@ -43,7 +49,10 @@ export default function CreateOrder() {
       <div className="mb-4">
         <label className="block text-sm font-medium mb-2">Customer Name</label>
         <input
+          value={customerName}
+          onChange={(e) => onCustomerName(e.target.value)}
           type="text"
+          name="customerName"
           className="w-full bg-gray-700 bg-opacity-50 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300"
         />
       </div>
@@ -54,16 +63,22 @@ export default function CreateOrder() {
           {menuItems.map((item) => (
             <MenuItemsList
               key={item.id}
+              id={item.id}
               image={item.imageURL}
               name={item.name}
               price={item.price}
+              onSelectItem={onSelectItem}
+              selectedItems={selectedItems}
             />
           ))}
         </div>
       </div>
 
-      <button className="w-full bg-primary hover:bg-opacity-90 text-white font-medium py-3 rounded-full transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1">
-        Place Order (BDT 100)
+      <button
+        onClick={onPlaceOrder}
+        className="w-full bg-primary hover:bg-opacity-90 text-white font-medium py-3 rounded-full transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 cursor-pointer"
+      >
+        Place Order (BDT {totalPrice})
       </button>
     </div>
   );
