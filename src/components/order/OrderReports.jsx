@@ -1,7 +1,11 @@
 import NoOrdersFound from "./NoOrdersFound";
 import OrderReportsList from "./OrderReportsList";
 
-export default function OrderReports({ orderReports }) {
+export default function OrderReports({
+  orderReports,
+  onOrderDelivered,
+  onOrderDelete,
+}) {
   return (
     <div>
       <div className="flex justify-between">
@@ -51,6 +55,8 @@ export default function OrderReports({ orderReports }) {
                   items={orderReport.items}
                   amount={orderReport.amount}
                   status={orderReport.status}
+                  onOrderDelivered={onOrderDelivered}
+                  onOrderDelete={onOrderDelete}
                 />
               ))}
             </tbody>

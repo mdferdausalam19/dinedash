@@ -71,6 +71,25 @@ export default function Order() {
     setDeliveredOrders(totalDeliveredOrders);
   };
 
+  const handleOrderDelivered = (itemId) => {
+    const updatedReports = orderReports.map((orderReport) => {
+      if (orderReport.id === itemId && orderReport.status === "PENDING") {
+        return { ...orderReport, status: "DELIVERED" };
+      }
+      return orderReport;
+    });
+    setOrderReports(updatedReports);
+    handleOrderSummary(updatedReports);
+  };
+
+  const handleOrderDelete = (itemId) => {
+    const updatedReports = orderReports.filter(
+      (orderReport) => orderReport.id !== itemId
+    );
+    setOrderReports(updatedReports);
+    handleOrderSummary(updatedReports);
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 flex-grow">
       <CreateOrder
@@ -86,6 +105,8 @@ export default function Order() {
         totalOrder={totalOrders}
         pendingOrders={pendingOrders}
         deliveredOrders={deliveredOrders}
+        onOrderDelivered={handleOrderDelivered}
+        onOrderDelete={handleOrderDelete}
       />
     </div>
   );

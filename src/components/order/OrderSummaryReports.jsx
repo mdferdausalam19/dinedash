@@ -6,6 +6,8 @@ export default function OrderSummaryReports({
   totalOrder,
   pendingOrders,
   deliveredOrders,
+  onOrderDelivered,
+  onOrderDelete,
 }) {
   return (
     <div className="md:col-span-2 h-[calc(100vh_-_130px)]">
@@ -14,7 +16,11 @@ export default function OrderSummaryReports({
         pendingOrders={pendingOrders}
         deliveredOrders={deliveredOrders}
       />
-      <OrderReports orderReports={orderReports} />
+      <OrderReports
+        orderReports={orderReports}
+        onOrderDelivered={onOrderDelivered}
+        onOrderDelete={onOrderDelete}
+      />
     </div>
   );
 }
