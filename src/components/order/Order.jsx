@@ -10,6 +10,7 @@ export default function Order() {
   const [totalOrders, setTotalOrders] = useState(0);
   const [pendingOrders, setPendingOrders] = useState(0);
   const [deliveredOrders, setDeliveredOrders] = useState(0);
+  const [filterOrder, setFilterOrder] = useState("All");
 
   const handleSelectedItemsTotalPrice = (itemId, price, operation) => {
     if (operation === "add") {
@@ -90,6 +91,14 @@ export default function Order() {
     handleOrderSummary(updatedReports);
   };
 
+  const handleFilterOrder = (filterBy) => {
+    setFilterOrder(filterBy);
+  };
+  const filteredOrderReports =
+    filterOrder === "All"
+      ? orderReports
+      : orderReports.filter((order) => order.status === filterOrder);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 flex-grow">
       <CreateOrder
@@ -101,12 +110,14 @@ export default function Order() {
         onPlaceOrder={handlePlaceOrder}
       />
       <OrderSummaryReports
-        orderReports={orderReports}
+        orderReports={filteredOrderReports}
         totalOrder={totalOrders}
         pendingOrders={pendingOrders}
         deliveredOrders={deliveredOrders}
         onOrderDelivered={handleOrderDelivered}
         onOrderDelete={handleOrderDelete}
+        filterOrder={filterOrder}
+        onFilterOrder={handleFilterOrder}
       />
     </div>
   );

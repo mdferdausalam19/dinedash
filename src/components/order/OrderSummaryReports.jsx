@@ -8,6 +8,8 @@ export default function OrderSummaryReports({
   deliveredOrders,
   onOrderDelivered,
   onOrderDelete,
+  filterOrder,
+  onFilterOrder,
 }) {
   return (
     <div className="md:col-span-2 h-[calc(100vh_-_130px)]">
@@ -20,6 +22,8 @@ export default function OrderSummaryReports({
         orderReports={orderReports}
         onOrderDelivered={onOrderDelivered}
         onOrderDelete={onOrderDelete}
+        filterOrder={filterOrder}
+        onFilterOrder={onFilterOrder}
       />
     </div>
   );

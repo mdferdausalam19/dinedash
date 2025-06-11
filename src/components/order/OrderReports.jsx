@@ -5,12 +5,14 @@ export default function OrderReports({
   orderReports,
   onOrderDelivered,
   onOrderDelete,
+  filterOrder,
+  onFilterOrder,
 }) {
   return (
     <div>
       <div className="flex justify-between">
         <h2 className="text-xl font-bold mb-4">Order Reports</h2>
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 items-center border border-orange-500 mb-2 px-2 rounded-xl">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -25,10 +27,14 @@ export default function OrderReports({
           >
             <path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z" />
           </svg>
-          <select className="appearance-none bg-zinc-900 accent-orange-600 border-none outline-none rounded-sm">
-            <option>All</option>
-            <option>Pending</option>
-            <option>Delivered</option>
+          <select
+            defaultValue={filterOrder}
+            onChange={(e) => onFilterOrder(e.target.value)}
+            className="rounded-sm border-2 border-white"
+          >
+            <option value={"All"}>All</option>
+            <option value={"PENDING"}>Pending</option>
+            <option value={"DELIVERED"}>Delivered</option>
           </select>
         </div>
       </div>
