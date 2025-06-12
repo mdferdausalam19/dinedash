@@ -31,11 +31,11 @@ export default function OrderReportsList({
         </button>
         <button
           onClick={() => onOrderDelivered(id)}
-          className={`bg-gray-800 hover:bg-green-600 text-xs px-3 py-1 rounded-full transition-colors duration-300 cursor-pointer ${
+          className={`bg-gray-800 hover:bg-green-600 text-xs px-3 py-1 mt-2 rounded-full transition-colors duration-300 cursor-pointer ${
             status === "DELIVERED" ? "hidden" : ""
           } `}
         >
-          DELIVER
+          Deliver
         </button>
       </td>
     </tr>

@@ -7,7 +7,7 @@ export default function MenuItemsList({
   selectedItems,
 }) {
   return (
-    <div className="bg-gray-700 bg-opacity-30 rounded-md p-3 mb-3 flex justify-between items-center hover:bg-opacity-40 transition-all duration-300">
+    <div className="bg-gray-700 bg-opacity-30 rounded-md p-3 mb-3 flex md:flex-col lg:flex-row justify-between items-center hover:bg-opacity-40 transition-all duration-300">
       <div className="flex items-center">
         <div className="w-12 h-12   flex items-center justify-center mr-3">
           <img src={image} alt="item image" className="w-10 h-10" />
@@ -17,7 +17,7 @@ export default function MenuItemsList({
           <p className="text-xs text-gray-400">BDT {price}</p>
         </div>
       </div>
-      <div className=" space-y-3">
+      <div className="flex items-center gap-3 md:mt-3 lg:mt-0">
         <button
           disabled={
             !selectedItems.find((selectedItem) => selectedItem.itemId === id)

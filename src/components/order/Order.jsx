@@ -6,11 +6,20 @@ export default function Order() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [customerName, setCustomerName] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
-  const [orderReports, setOrderReports] = useState([]);
-  const [totalOrders, setTotalOrders] = useState(0);
-  const [pendingOrders, setPendingOrders] = useState(0);
-  const [deliveredOrders, setDeliveredOrders] = useState(0);
+  const initialOrders = JSON.parse(localStorage.getItem("orders")) || [];
+  const [orderReports, setOrderReports] = useState(initialOrders);
+  const [totalOrders, setTotalOrders] = useState(initialOrders.length || 0);
+  const [pendingOrders, setPendingOrders] = useState(
+    initialOrders.filter((r) => r.status === "PENDING").length || 0
+  );
+  const [deliveredOrders, setDeliveredOrders] = useState(
+    initialOrders.filter((r) => r.status === "DELIVERED").length || 0
+  );
   const [filterOrder, setFilterOrder] = useState("All");
+
+  const updateLocalStorage = (updatedOrders) => {
+    localStorage.setItem("orders", JSON.stringify(updatedOrders));
+  };
 
   const handleSelectedItemsTotalPrice = (itemId, price, operation) => {
     if (operation === "add") {
@@ -58,6 +67,7 @@ export default function Order() {
     setCustomerName("");
     setTotalPrice(0);
     handleOrderSummary(updatedReports);
+    updateLocalStorage(updatedReports);
   };
 
   const handleOrderSummary = (reports) => {
@@ -81,6 +91,7 @@ export default function Order() {
     });
     setOrderReports(updatedReports);
     handleOrderSummary(updatedReports);
+    updateLocalStorage(updatedReports);
   };
 
   const handleOrderDelete = (itemId) => {
@@ -89,6 +100,7 @@ export default function Order() {
     );
     setOrderReports(updatedReports);
     handleOrderSummary(updatedReports);
+    updateLocalStorage(updatedReports);
   };
 
   const handleFilterOrder = (filterBy) => {

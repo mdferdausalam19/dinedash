@@ -40,15 +40,15 @@ export default function OrderReports({
       </div>
       <div className="bg-cardbg rounded-lg p-4">
         <div className="reports-container">
-          <table className="min-w-full">
+          <table className="table-fixed overflow-auto xl:w-full border-separate border-spacing-x-4">
             <thead>
               <tr className="text-left text-sm">
-                <th className="pb-3 font-medium">ID</th>
-                <th className="pb-3 font-medium">Customer Name</th>
-                <th className="pb-3 font-medium">Items</th>
-                <th className="pb-3 font-medium">Amount</th>
-                <th className="pb-3 font-medium">Status</th>
-                <th className="pb-3 font-medium">Action</th>
+                <th className="pb-3 font-medium w-1/4">ID</th>
+                <th className="pb-3 font-medium w-1/4">Customer Name</th>
+                <th className="pb-3 font-medium w-1/4">Items</th>
+                <th className="pb-3 font-medium w-1/4">Amount</th>
+                <th className="pb-3 font-medium w-1/4">Status</th>
+                <th className="pb-3 font-medium w-1/4">Action</th>
               </tr>
             </thead>
 
